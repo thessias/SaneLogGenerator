@@ -39,8 +39,8 @@ namespace SaneLogGenerator
                         string activity = disposableVariant[0];
                         System.Diagnostics.Debug.WriteLine("FIRST EVENT: " + disposableVariant[0]);
 
-                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
-                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
+                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources1);
+                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources2);
                         var data = new[]
 
                         {
@@ -75,8 +75,8 @@ namespace SaneLogGenerator
                         System.Diagnostics.Debug.WriteLine("LAST EVENT: " + disposableVariant[0]);
                         DateTime start = config.CaseDateTime.AddMilliseconds(config.InitialNumberOfEvents - config.NumberOfEvents).AddSeconds(config.Rnd.Next(0, 200));
                         TimeSpan duration = DataGenerator.GenerateDuration(config.Rnd, config.NumberOfEvents);
-                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
-                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
+                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources1);
+                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources2);
                         var data = new[]
 
                         {
@@ -109,8 +109,8 @@ namespace SaneLogGenerator
                         DateTime start = config.CaseDateTime.AddSeconds(config.InitialNumberOfEvents - config.NumberOfEvents).AddMilliseconds(config.Rnd.Next(0, 800));
                         TimeSpan duration = DataGenerator.GenerateDuration(config.Rnd, config.NumberOfEvents);
                         string activity = disposableVariant[0];
-                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
-                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources);
+                        string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources1);
+                        string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources2);
 
                         var data = new[]
 

@@ -6,25 +6,57 @@ namespace SaneLogGenerator
 {
     internal class DataGenerator
     {
-        public static List<string> GenerateResources(int numberOfResources)
+        public static List<string> GenerateResources(int numberOfResources, bool specialChars, int resourceListIndex)
         {
             List<string> resources = new List<string>();
+            string resourcePrefix;
+            if (specialChars)
+            {
+                if (resourceListIndex == 1)
+                {
+                    resourcePrefix = "Пользователь_";
+                }
+                else
+                {
+                    resourcePrefix = "Ресурс_";
+                }
+            }
+            else
+            {
+                if (resourceListIndex == 1)
+                {
+                    resourcePrefix = "Resource_";
+                }
+                else
+                {
+                    resourcePrefix = "User_";
+                }
+            }
             while (numberOfResources > 0)
             {
-                resources.Add("R" + numberOfResources);
+                resources.Add(resourcePrefix + numberOfResources);
                 numberOfResources--;
             }
             resources.Reverse();
             return resources;
         }
 
-        public static List<string> GenerateActivities(int numberOfActivitiess)
+        public static List<string> GenerateActivities(int numberOfActivities, bool specialChars)
         {
             List<string> activities = new List<string>();
-            while (numberOfActivitiess > 0)
+            string activityPrefix; ;
+            if (specialChars)
             {
-                activities.Add("A" + numberOfActivitiess);
-                numberOfActivitiess--;
+                activityPrefix = "Деятельность_";
+            }
+            else
+            {
+                activityPrefix = "Activity_";
+            }
+            while (numberOfActivities > 0)
+            {
+                activities.Add(activityPrefix + numberOfActivities);
+                numberOfActivities--;
             }
             activities.Reverse();
             return activities;
@@ -251,21 +283,40 @@ namespace SaneLogGenerator
         public static string GeneratAttributeEvent(Config config, string activity)
         {
             int indexOfActivity = config.Activities.IndexOf(activity) + 1;
+            string attEventPrefix;
+            if (config.SpecialChars)
+            {
+                attEventPrefix = "СобытиеАтрибут_";
+            }
+            else
+            {
+                attEventPrefix = "EventAttribute_";
+            }
 
-            string attEvent = "EventAttribute_" + indexOfActivity;
+            string attEvent = attEventPrefix + indexOfActivity;
             return attEvent;
         }
 
         public static string GenerateAttributeCase(Config config)
         {
             int attCaseNumber = config.Counter + 1;
-            string attCase = "CaseAttribute_" + attCaseNumber;
+            string attCasePrefix;
+
+            if (config.SpecialChars)
+            {
+                attCasePrefix = "CлучайАтрибут_";
+            }
+            else
+            {
+                attCasePrefix = "CaseAttribute_";
+            }
+            string attCase = attCasePrefix + attCaseNumber;
             return attCase;
         }
 
         public static int GenerateFinRes(Config config, string resource)
         {
-            int indexOfResource = config.Resources.IndexOf(resource);
+            int indexOfResource = config.Resources1.IndexOf(resource);
             int finRes = indexOfResource + 10;
             return finRes;
         }
