@@ -54,7 +54,9 @@ namespace SaneLogGenerator
                                 End = start.Add(duration),
                                 FinCase = DataGenerator.GenerateFinCase(config),
                                 FinEvent = DataGenerator.GenerateFinEvent(config, activity),
-                                FinRes = DataGenerator.GenerateFinRes(config, resource1)
+                                FinRes = DataGenerator.GenerateFinRes(config, resource1),
+                                AttributeCase = DataGenerator.GenerateAttributeCase(config),
+                                AttributeEvent = DataGenerator.GeneratAttributeEvent(config, activity)
                                 }
                             };
                         {
@@ -89,6 +91,8 @@ namespace SaneLogGenerator
                                 FinCase = DataGenerator.GenerateFinCase(config),
                                 FinEvent = DataGenerator.GenerateFinEvent(config, activity),
                                 FinRes = DataGenerator.GenerateFinRes(config, resource1),
+                                AttributeCase = DataGenerator.GenerateAttributeCase(config),
+                                AttributeEvent = DataGenerator.GeneratAttributeEvent(config, activity)
                                 }
                             };
                         {
@@ -122,6 +126,8 @@ namespace SaneLogGenerator
                                 FinCase = DataGenerator.GenerateFinCase(config),
                                 FinEvent = DataGenerator.GenerateFinEvent(config, activity),
                                 FinRes = DataGenerator.GenerateFinRes(config, resource1),
+                                AttributeCase = DataGenerator.GenerateAttributeCase(config),
+                                AttributeEvent = DataGenerator.GeneratAttributeEvent(config, activity)
                                 }
                             };
                         {

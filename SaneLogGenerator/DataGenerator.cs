@@ -248,6 +248,21 @@ namespace SaneLogGenerator
             return finEvent;
         }
 
+        public static string GeneratAttributeEvent(Config config, string activity)
+        {
+            int indexOfActivity = config.Activities.IndexOf(activity) + 1;
+
+            string attEvent = "EventAttribute_" + indexOfActivity;
+            return attEvent;
+        }
+
+        public static string GenerateAttributeCase(Config config)
+        {
+            int attCaseNumber = config.Counter + 1;
+            string attCase = "CaseAttribute_" + attCaseNumber;
+            return attCase;
+        }
+
         public static int GenerateFinRes(Config config, string resource)
         {
             int indexOfResource = config.Resources.IndexOf(resource);

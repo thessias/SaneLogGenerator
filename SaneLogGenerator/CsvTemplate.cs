@@ -16,5 +16,7 @@ namespace SaneLogGenerator
         public int FinCase { get; set; }
         public int FinEvent { get; set; }
         public int FinRes { get; set; }
+        public string AttributeCase { get; set; }
+        public string AttributeEvent { get; set; }
     }
 }
