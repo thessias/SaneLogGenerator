@@ -1,2 +1,8 @@
 .vs
+bin
+obj
+Properties
 Debug
+Release
+publish
+out.csv
