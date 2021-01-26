@@ -73,7 +73,15 @@ namespace SaneLogGenerator
                         //TimeSpan endTimeSpan = new TimeSpan(2, 0, 0, 0);
                         string activity = disposableVariant[0];
                         System.Diagnostics.Debug.WriteLine("LAST EVENT: " + disposableVariant[0]);
-                        DateTime start = config.CaseDateTime.AddMilliseconds(config.InitialNumberOfEvents - config.NumberOfEvents).AddSeconds(config.Rnd.Next(0, 200));
+                        DateTime start;
+                        if (config.Parallel)
+                        {
+                            start = config.CaseDateTime.AddHours(-2);
+                        }
+                        else
+                        {
+                            start = config.CaseDateTime.AddMilliseconds(config.InitialNumberOfEvents - config.NumberOfEvents).AddSeconds(config.Rnd.Next(0, 200));
+                        }
                         TimeSpan duration = DataGenerator.GenerateDuration(config.Rnd, config.NumberOfEvents);
                         string resource1 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources1);
                         string resource2 = DataGenerator.GenerateResourceForEvent(config.Rnd, activity, config.Activities, config.Resources2);

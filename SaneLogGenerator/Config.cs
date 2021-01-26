@@ -15,6 +15,8 @@ namespace SaneLogGenerator
         public int NumberOfResources { get; set; }
         public DateTime StartDateTime { get; set; }
         public bool SpecialChars { get; set; }
+
+        public bool Parallel { get; set; }
         public string PathToFile { get; set; }
         public int InitialNumberOfEvents { get; set; }
         public List<string> Activities { get; set; }
@@ -25,7 +27,7 @@ namespace SaneLogGenerator
         public DateTime CaseDateTime { get; set; }
 
         public Config(int numberOfEvents, int numberOfVariants, int minActivitiesPerCase, int maxActivitiesPerCase, int numberOfActivities,
-                       int numberOfResources, DateTime startDateTime, bool specialChars, string pathTiFile, List<string> activities, List<string> resources1, List<string> resources2)
+                       int numberOfResources, DateTime startDateTime, bool specialChars, bool parallel, string pathTiFile, List<string> activities, List<string> resources1, List<string> resources2)
         {
             this.NumberOfEvents = numberOfEvents;
             this.NumberOfVariants = numberOfVariants;
@@ -35,6 +37,7 @@ namespace SaneLogGenerator
             this.NumberOfResources = numberOfResources;
             this.StartDateTime = startDateTime;
             this.SpecialChars = specialChars;
+            this.Parallel = parallel;
             this.PathToFile = pathTiFile;
             this.InitialNumberOfEvents = numberOfEvents;
             this.Activities = activities;
