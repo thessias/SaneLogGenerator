@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "SaneLogGenerator": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Users\\slavk\\Desktop\\SLG\\SaneLogGenerator\\bin\\Debug\\netcoreapp3.1\\SaneLogGenerator.exe",
-      "commandLineArgs": "-e 100 -v 10 -x 5 -y 10 -a 10 -r 10 -d \"08/08/2000 9:00\" -p -f \"C:\\Users\\slavk\\Desktop\\SLG\\out.csv\""
-    }
-  }
-}
