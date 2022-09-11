@@ -9,7 +9,7 @@ Output file consists of following columns:
 - Start
 - Duration
 - End
-- FinCase (Financal per Case)
+- FinCase (Financial per Case)
 - FinEvent (Financial per Event)
 - FinRes (Financial per Resource)
 - AttributeCase (Generic Case-level Attribute)
