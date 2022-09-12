@@ -20,16 +20,17 @@ namespace SaneLogGenerator
 
             csvWriter.WriteHeader<CsvTemplate>();
             csvWriter.NextRecord();
-            List<string> variant = new List<string>();
-            List<string> disposableVariant = new List<string>();
-            while (config.NumberOfEvents > 0)
+            List<string> variant = new();
+            List<string> disposableVariant = new();
+            int numberOfEvents = config.NumberOfEvents;
+
+            while (numberOfEvents > 0)
             {
                 variant = DataGenerator.GetRandomVariant(config, context, variants);
                 disposableVariant = variant.GetRange(0, variant.Count);
                 int totalVariantCount = disposableVariant.Count;
-                int numberOfEvents = config.NumberOfEvents;
 
-                while (disposableVariant.Count > 0 && config.NumberOfEvents > 0)
+                while (disposableVariant.Count > 0 && numberOfEvents > 0)
                 {
                     if (disposableVariant.Count == totalVariantCount)
                     {
