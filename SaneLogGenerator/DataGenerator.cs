@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SaneLogGenerator
 {
-    internal class DataGenerator
+    public static class DataGenerator
     {
         public static List<string> GenerateResources(int numberOfResources, bool specialChars, int resourceListIndex)
         {
-            List<string> resources = new List<string>();
+            List<string> resources = new();
             string resourcePrefix;
             if (specialChars)
             {
@@ -35,7 +35,7 @@ namespace SaneLogGenerator
             while (numberOfResources > 0)
             {
                 resources.Add(resourcePrefix + numberOfResources);
-                numberOfResources--;
+                --numberOfResources;
             }
             resources.Reverse();
             return resources;
@@ -43,8 +43,8 @@ namespace SaneLogGenerator
 
         public static List<string> GenerateActivities(int numberOfActivities, bool specialChars)
         {
-            List<string> activities = new List<string>();
-            string activityPrefix; ;
+            List<string> activities = new();
+            string activityPrefix;
             if (specialChars)
             {
                 activityPrefix = "Деятельность_";
@@ -56,7 +56,7 @@ namespace SaneLogGenerator
             while (numberOfActivities > 0)
             {
                 activities.Add(activityPrefix + numberOfActivities);
-                numberOfActivities--;
+                --numberOfActivities;
             }
             activities.Reverse();
             return activities;
@@ -122,12 +122,14 @@ namespace SaneLogGenerator
 
                 if (remainder == 0)
                 {
-                    List<int> possibleResources = new List<int>();
-                    possibleResources.Add(indexOfActivity);
+                    List<int> possibleResources = new()
+                    {
+                        indexOfActivity
+                    };
                     while (quotient > 1)
                     {
                         possibleResources.Add(((indexOfActivity + 1) * quotient) - 1);
-                        quotient--;
+                        --quotient;
                     }
                     int randomFromRange = rnd.Next(0, possibleResources.Count);
 
@@ -135,19 +137,21 @@ namespace SaneLogGenerator
                 }
                 else
                 {
-                    List<int> possibleResources = new List<int>();
-                    possibleResources.Add(indexOfActivity);
+                    List<int> possibleResources = new()
+                    {
+                        indexOfActivity
+                    };
                     while (quotient > 0)
                     {
                         possibleResources.Add(indexOfActivity * quotient);
-                        quotient--;
+                        --quotient;
                     }
                     int i = 1;
                     while (remainder > 0)
                     {
                         possibleResources.Add(numberOfResources - i);
-                        remainder--;
-                        i++;
+                        --remainder;
+                        ++i;
                     }
 
                     indexOfResource = GetRandomIntFromList(possibleResources, rnd);
@@ -182,11 +186,11 @@ namespace SaneLogGenerator
                     }
                     else
                     {
-                        List<int> possibleResources = new List<int>();
+                        List<int> possibleResources = new();
                         while (remainder > 0)
                         {
                             possibleResources.Add((indexOfActivity + 1) % quotient);
-                            remainder--;
+                            --remainder;
                         }
                         indexOfResource = GetRandomIntFromList(possibleResources, rnd);
                         return resources[indexOfResource];
@@ -266,9 +270,9 @@ namespace SaneLogGenerator
             }
         }
 
-        public static int GenerateFinCase(Config config)
+        public static int GenerateFinCase(Context context)
         {
-            int finCase = config.Counter + 1 + 10000;
+            int finCase = context.Counter + 1 + 10000;
             return finCase;
         }
 
@@ -297,9 +301,9 @@ namespace SaneLogGenerator
             return attEvent;
         }
 
-        public static string GenerateAttributeCase(Config config)
+        public static string GenerateAttributeCase(Config config, Context context)
         {
-            int attCaseNumber = config.Counter + 1;
+            int attCaseNumber = context.Counter + 1;
             string attCasePrefix;
 
             if (config.SpecialChars)
@@ -321,36 +325,36 @@ namespace SaneLogGenerator
             return finRes;
         }
 
-        public static List<List<string>> GenerateVariants(Config config)
+        public static List<List<string>> GenerateVariants(Config config, Context context)
         {
             int activitiesPerCase;
-            List<List<string>> variants = new List<List<string>>();
-
-            while (config.NumberOfVariants > 0)
+            List<List<string>> variants = new();
+            int numberOfVariants = config.NumberOfVariants;
+            while (numberOfVariants > 0)
             {
-                List<string> variant = new List<string>();
+                List<string> variant = new();
 
-                activitiesPerCase = config.Rnd.Next(config.MinActivitiesPerCase, config.MaxActivitiesPerCase);
-                string firstEvent = GetFirstEventFromList(config.Activities, config.Rnd);
+                activitiesPerCase = context.Rnd.Next(config.MinActivitiesPerCase, config.MaxActivitiesPerCase);
+                string firstEvent = GetFirstEventFromList(config.Activities, context.Rnd);
                 variant.Add(firstEvent);
 
                 while (activitiesPerCase - 2 > 0)
                 {
-                    string anyEvent = DataGenerator.GetRandomFromList(config.Activities, config.Rnd);
+                    string anyEvent = DataGenerator.GetRandomFromList(config.Activities, context.Rnd);
                     variant.Add(anyEvent);
-                    activitiesPerCase--;
+                    --activitiesPerCase;
                 }
-                string lastEvent = GetLastEventFromList(config.Activities, config.Rnd);
+                string lastEvent = GetLastEventFromList(config.Activities, context.Rnd);
                 variant.Add(lastEvent);
-                config.NumberOfVariants--;
+                --numberOfVariants;
                 variants.Add(variant);
             }
             return variants;
         }
 
-        public static List<string> GetRandomVariant(Config config, List<List<string>> variants)
+        public static List<string> GetRandomVariant(Config config, Context context, List<List<string>> variants)
         {
-            int r = config.Rnd.Next(variants.Count);
+            int r = context.Rnd.Next(variants.Count);
             return variants[r];
         }
     }

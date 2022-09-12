@@ -35,9 +35,6 @@ namespace SaneLogGenerator
         [Option('s', "special-chars", Default = false, HelpText = "Special characters used in log. (no value needed)")]
         public bool SpecialChars { get; set; }
 
-        // [Option('n', "empty-fileds", Default = false, HelpText = "Some fileds will be empty.")]
-        // public bool EmptyField { get; set; }
-
         [Option('f', "path-to-file", Required = true, HelpText = "Path to output file.")]
         public string PathToFile { get; set; }
 
